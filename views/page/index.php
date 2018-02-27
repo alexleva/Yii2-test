@@ -2,7 +2,7 @@
 
 
 <div class="panel-panel-default">
-    <h3 class="panel-title"><p> <strong><?= $page->title ?></strong></p></h3>
+    <h3 class="panel-title"><p> <strong><?= $page->name ?></strong></p></h3>
 </div>
 <div class="panel-body">
     <?= $page->text ?>

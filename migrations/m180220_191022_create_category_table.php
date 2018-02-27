@@ -14,16 +14,16 @@ class m180220_191022_create_category_table extends Migration
     {
         $this->createTable('category', [
             'id' => $this->bigPrimaryKey(),
-            'title' => $this->string(),
+            'name' => $this->string(),
             'text' => $this->text(),
-            'url' => $this->string(),
+            'url' => $this->string()->notNull(),
             'type' => $this->string(),
-        ]);
-        $this->batchInsert('category', ['title', 'text', 'url', 'type'], [
-            ['Категория №1', 'Страницы категории №1', '1', 'dinamic'],
-            ['Категория №2', 'Страницы категории №2', '2', 'dinamic'],
-            ['Статическая категория №3', 'Страницы категории №3', '3', 'static'],
-            ['Статическая категория №4', 'Страницы категории №4', '4', 'static']
+        ], 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB');
+        $this->batchInsert('category', ['name', 'text', 'url', 'type'], [
+            ['Phone', 'Страницы категории №1', 'Phone', 'dinamic'],
+            ['Computer', 'Страницы категории №2', 'Computer', 'dinamic'],
+            ['Valut', 'Страницы категории №3', 'Valut', 'static'],
+            ['Sport', 'Страницы категории №4', 'Sport', 'static']
         ]);
     }
 

@@ -6,10 +6,11 @@ use yii\widgets\Pjax;
     <?php foreach ($pages as $page): ?>
 
         <div class="panel-panel-default">
-            <h3 class="panel-title"><?=$page->title ?></h3>
+            <h3 class="panel-title"><?=$page->name ?></h3>
         </div>
         <div class="panel-body">
             <?= $page->text ?>
+
         </div>
 
     <?php endforeach; ?>

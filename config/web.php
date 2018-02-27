@@ -18,10 +18,8 @@ $config = [
                 'enableStrictParsing' => true,
                 'rules' => [
                     '/' => 'site/index',
-                    'category<url:\d+>/page<id\d+>' => 'page/index',
-                    'category<id:\d+>' => 'category/index',
-
-
+                    '<url:\w+>' => 'category/index',
+                    '<url:\w+>/<name:\w+>' => 'page/index',
             ],
         ],
 
