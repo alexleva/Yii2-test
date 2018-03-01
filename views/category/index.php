@@ -2,10 +2,6 @@
 use yii\widgets\Pjax;
 use yii\helpers\Url;
 use yii\widgets\ListView;
-$string = <<<HTML
-
-<h3>$model->name</h3>
-HTML;
 ?>
 <?php Pjax::begin() ?>
 <?=
