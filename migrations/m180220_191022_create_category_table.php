@@ -10,15 +10,16 @@ class m180220_191022_create_category_table extends Migration
     /**
      * @inheritdoc
      */
-    public function up()
+    public function safeUp()
     {
         $this->createTable('category', [
-            'id' => $this->bigPrimaryKey(),
-            'name' => $this->string(),
+            'id' => $this->PrimaryKey(),
+            'name' => $this->string(100),
             'text' => $this->text(),
-            'url' => $this->string()->notNull(),
-            'type' => $this->string(),
+            'url' => $this->string(100)->notNull(),
+            'type' => $this->string(100),
         ], 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB');
+
         $this->batchInsert('category', ['name', 'text', 'url', 'type'], [
             ['Phone', 'Страницы категории №1', 'Phone', 'dinamic'],
             ['Computer', 'Страницы категории №2', 'Computer', 'dinamic'],
@@ -30,7 +31,7 @@ class m180220_191022_create_category_table extends Migration
     /**
      * @inheritdoc
      */
-    public function down()
+    public function safeDown()
     {
         $this->dropTable('category');
     }

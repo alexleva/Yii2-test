@@ -4,15 +4,14 @@ namespace app\controllers;
 use app\models\Page;
 use app\models\Category;
 use yii\data\Pagination;
-use Yii;
 use yii\web\HttpException;
+use yii\data\ActiveDataProvider;
 
 
 
 
 class CategoryController extends AppController
 {
-    public $data;
     public function actionIndex($url)
     {
 //        Достаем из базы данных перечень всех категорий
@@ -22,15 +21,23 @@ class CategoryController extends AppController
 
 
 //        Выводим перечень страниц категории с пагинацией
-        $query = Page::find()->where(['category_id' => $category]);
-        $posts = new Pagination(['totalCount' => $query->count(), 'pageSize' => 3, 'pageSizeParam' => false, 'forcePageParam' => false]);
-        $pages = $query->offset($posts->offset)->limit($posts->limit)->all();
+//        $query = Page::find()->where(['category_id' => $category]);
+//        $posts = new Pagination(['totalCount' => $query->count(), 'pageSize' => 3, 'pageSizeParam' => false, 'forcePageParam' => false]);
+//        $pages = $query->offset($posts->offset)->limit($posts->limit)->all();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Page::find()->where(['category_id' => $category]),
+            'pagination' => [
+                'pageSize' => 3
+            ],
+        ]);
 
 //        Задаем мета теги для страницы
         $this->setMeta('Категории' . $category->title, $category->keywords, $category->description);
+        $this->view->title = 'Pages list';
 
 
-        return $this->render('index', compact('pages', 'posts', 'category'));
+        return $this->render('index', ['pages', 'posts', 'category', 'dataProvider' => $dataProvider]);
 
     }
 }

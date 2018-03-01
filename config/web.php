@@ -17,8 +17,10 @@ $config = [
                 'showScriptName' => false,
                 'enableStrictParsing' => true,
                 'rules' => [
+
                     '/' => 'site/index',
                     '<url:\w+>' => 'category/index',
+                    '<action>' => 'site/<action>',
                     '<url:\w+>/<name:\w+>' => 'page/index',
             ],
         ],

@@ -10,17 +10,20 @@ class m180220_191037_create_page_table extends Migration
     /**
      * @inheritdoc
      */
-    public function up()
+    public function safeUp()
     {
         $this->createTable('page', [
             'id' => $this->bigPrimaryKey(),
-            'name' => $this->string(),
+            'name' => $this->string(100),
             'text' => $this->text(),
-            'url' => $this->string(),
-            'category_id' => $this->integer(),
+            'url' => $this->string(100),
+            'category_id' => $this->integer(11)->notNull(),
         ], 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB');
+
+
+
         $this->batchInsert('page', ['name', 'text', 'url', 'category_id'], [
-            ['Iphone', 'Текст страницы №1', 'page1', 1],
+            ['iPhone', 'Текст страницы №1', 'page1', 1],
             ['Meizu', 'Текст страницы №2', 'page2', 1],
             ['Pixel', 'Текст страницы №3', 'page3', 1],
             ['packard', 'Текст страницы №4', 'page4', 2],
@@ -42,12 +45,17 @@ class m180220_191037_create_page_table extends Migration
             ['surface', 'Текст страницы №20', 'page20', 2]
         ]);
 
+        $this->addForeignKey('fk_category_page','page','category_id','category','id' );
+
+
+
     }
 
     /**
      * @inheritdoc
      */
-    public function down()
+
+    public function safeDown()
     {
         $this->dropTable('page');
     }
