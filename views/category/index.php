@@ -11,7 +11,6 @@ HTML;
 <?=
 
 
-
 ListView::widget([
     'dataProvider' => $dataProvider,
     'options' => [
@@ -22,9 +21,8 @@ ListView::widget([
         'tag' => 'div',
     ],
     'itemView' => function ($model, $key, $index, $widget) {
-        debug($model);
         // or just do some echo
-        echo '<a>' . $model->name . '</a>' . '<br>';
+        echo "<h3 class='panel-title'>" . "<a href='" . Url::to($model->category_name . '/' . $model->name) . "'>" . $model->name . '</a>' . '</h3>' . '<br>';
         ;
     },
 
