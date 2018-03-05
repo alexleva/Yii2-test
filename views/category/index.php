@@ -27,7 +27,7 @@ ListView::widget([
 <?php if(!empty($pages)): ?>
     <?php foreach ($pages as $page): ?>
         <div class="panel-panel-default">
-            <h3 class="panel-title"><a href="<?= Url::to($category[name] . '/' . $page->name);?>"><?=$page->name ?></h3></a>
+            <h3 class="panel-title"><a href="<?= Url::to($category['name'] . '/' . $page->name);?>"><?=$page->name ?></h3></a>
         </div>
         <div class="panel-body">
             <?= $page->text ?>
